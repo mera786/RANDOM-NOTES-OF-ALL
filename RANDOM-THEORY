@@ -1,0 +1,29 @@
+                                                           EQUALS & HASHCODE 
+
+🔴 Case 1: You do NOT override equals() and hashCode() :
+-----------------------------------------------------------
+Since neither equals() nor hashCode() is overridden, Java uses the default implementations from Object class:
+equals() compares object references (p1 == p2)
+hashCode() is based on the object’s memory address
+✅ Result:
+Both p1 and p2 are considered different, even if they contain the same data → both get added to the set.
+
+🟡 Case 2: You override only equals() but NOT hashCode()
+------------------------------------------------------------
+🧠 What happens?
+equals() says the objects are equal based on data (like name and age)
+But hashCode() still gives different hash codes (default from Object)
+⚠️ Consequence:
+HashSet uses hashCode() first to locate bucket.
+Since hash codes are different → it puts them in different buckets → equals() is never even called.
+✅ Result:
+Still both objects are stored, even though logically they are equal.
+
+🟠 Case 3: You override only hashCode() but NOT equals()
+---------------------------------------------------------
+🧠 What happens?
+Both objects now have the same hash code (great!)
+But equals() still checks reference equality (from Object)
+✅ Result:
+Java finds the same bucket (due to same hash code)
+But when it compares them, equals() says they're different → both are added
