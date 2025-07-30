@@ -26,4 +26,75 @@ Both objects now have the same hash code (great!)
 But equals() still checks reference equality (from Object)
 ✅ Result:
 Java finds the same bucket (due to same hash code)
+
+                                                             HASHMAP 
+
+✅ Scenario 1: Same key, same value inserted twice
+Input:
+map.put(1, "Apple");
+map.put(1, "Apple");
+Explanation:
+You are inserting the same key 1 with the same value "Apple" twice.
+In Java's HashMap, keys must be unique.
+So the second put() will overwrite the existing entry, but since the value is the same, nothing actually changes.
+becasue It uses hashCode() to find the bucket, then equals() to compare the key.
+Since the key already exists, it updates the existing entry.
+Output:
+{1=Apple}
 But when it compares them, equals() says they're different → both are added
+
+✅ Scenario 2: Same key, different value inserted
+Input:
+map.put(1, "Apple");
+map.put(1, "Banana");
+Explanation:
+The second put() uses the same key 1 but with a different value "Banana".
+This replaces the old value ("Apple") with the new one ("Banana").
+Output:
+{1=Banana}
+
+There are 7+ ways to print a HashMap :::::
+-------------------------------------------
+✅ 1. Direct print
+
+System.out.println(map);
+Note:Prints the whole map in {key=value} format.
+
+
+✅ 2. Using entrySet() with a for-each loop
+
+for (Map.Entry<Integer, String> entry : map.entrySet()) {
+    System.out.println(entry.getKey() + " => " + entry.getValue());
+}
+
+
+✅ 3. Using keySet() and get()
+
+for (Integer key : map.keySet()) {
+    System.out.println(key + " => " + map.get(key));
+}
+
+
+✅ 4. Using values()
+
+for (String value : map.values()) {
+    System.out.println("Value: " + value);
+}
+
+
+✅ 5. Using forEach() method (Java 8+)
+
+map.forEach((key, value) -> System.out.println(key + " => " + value));
+
+
+✅ 6. Using Iterator on entrySet()
+
+Iterator<Map.Entry<Integer, String>> iterator = map.entrySet().iterator();
+while (iterator.hasNext()) {
+    Map.Entry<Integer, String> entry = iterator.next();
+    System.out.println(entry.getKey() + " => " + entry.getValue());
+}
+
+
+
+
