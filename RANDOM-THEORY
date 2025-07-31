@@ -26,6 +26,7 @@ Both objects now have the same hash code (great!)
 But equals() still checks reference equality (from Object)
 ✅ Result:
 Java finds the same bucket (due to same hash code)
+So both objects get added to the same bucket but as different entries.
 
                                                              HASHMAP 
 
