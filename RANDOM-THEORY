@@ -97,5 +97,25 @@ while (iterator.hasNext()) {
 }
 
 
+                                                 ✅ Java Casting Scenarios :
+
+| #  | Java Code                                             | Description                       | Valid? | Notes                                                |
+| -- | ----------------------------------------------------- | --------------------------------- | ------ | ---------------------------------------------------- |
+| 1  | `Child c = new Child();`                              | Regular object creation           | ✅      | Normal usage, full access to `Child` methods         |
+| 2  | `Parent p = new Parent();`                            | Regular parent object             | ✅      | Only `Parent` methods, no polymorphism               |
+| 3  | `Parent p = new Child();`                             | Upcasting (implicit)              | ✅      | Allowed. You can access only `Parent` methods        |
+| 4  | `Child c = (Child) new Child();`                      | Downcasting, same type            | ✅      | Safe cast, as object is already a `Child`            |
+| 5  | `Child c = (Child) new Parent();`                     | Invalid downcasting               | ❌      | Compiles, but throws `ClassCastException` at runtime |
+| 6  | `Parent p = new Child();`<br>`Child c = (Child) p;`   | Downcasting from parent reference | ✅      | Safe because object is actually a `Child`            |
+| 7  | `Parent p = new Parent();`<br>`Child c = (Child) p;`  | Invalid downcast from parent      | ❌      | Fails at runtime: not truly a `Child`                |
+| 8  | `Object o = new Child();`<br>`Parent p = (Parent) o;` | Cast from Object → Parent         | ✅      | Allowed                                              |
+| 9  | `Object o = new Parent();`<br>`Child c = (Child) o;`  | Cast Object → Child (invalid)     | ❌      | Runtime error: not actually a `Child`                |
+| 10 | `Object o = new Child();`<br>`Child c = (Child) o;`   | Cast Object → Child               | ✅      | Allowed if object is truly `Child`      
+|
+
+For safe Casting : always use,
+if (p instanceof Child) {
+    Child c = (Child) p; // ✅ Safe
+}
 
 
